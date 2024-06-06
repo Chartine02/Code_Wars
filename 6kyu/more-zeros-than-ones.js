@@ -5,6 +5,7 @@ function moreZeros(s) {
   for (let i = 0; i < s.length; i++) {
     binary.push(s.charCodeAt(i).toString(2));
   }
+  console.log(binary);
 
   binary.map((el) => {
     let char = el.split("");
