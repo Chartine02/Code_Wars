@@ -1,10 +1,20 @@
 function showMe(yourID) {
-  let arr = yourID.split("");
-  let result;
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] == " " ? (result = false) : (result = true);
+  const parts = yourID.split("-");
+  console.log(parts);
+
+  for (let part of parts) {
+    console.log(part);
+    if (part.length === 0 || part[0] !== part[0].toUpperCase()) {
+      return false;
+    }
+    for (let i = 1; i < part.length; i++) {
+      if (part[i] !== part[i].toLowerCase()) {
+        return false;
+      }
+    }
   }
-  return result;
+
+  return true;
 }
 
 console.log(showMe("Francis"));
