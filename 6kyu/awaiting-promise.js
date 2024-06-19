@@ -1,7 +1,16 @@
 async function sayJoke(apiUrl, jokeId) {
   const link = await fetch(apiUrl);
   const data = await link.json();
-  const joke = data.joke.find((j) => j.jokeId === joke);
+
+  if (!data.jokes || !Array.isArray(data.jokes)) {
+    throw new Error(`No jokes at url: ${apiUrl}`);
+  }
+
+  const joke = data.jokes.find((j) => j.id === jokeId);
+
+  if (!joke) {
+    throw new Error(`No jokes found id: ${jokeId}`);
+  }
 
   return {
     saySetup: () => joke.setup,
